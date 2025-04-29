@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>Om Webbplatsen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Startsida</a></li>
+      <li><a href="./add.html">Lägg till</a></li>
+      <li><a href="./about.html">Om</a></li>
+    </ul>
+  </nav>
+  <h1>Om Webbplatsen</h1>
+  <section>
+    <h2>Syfte</h2>
+    <p>Denna webbplats är en del av kursen Backend-baserad webbutveckling hos Mittuniversitetet, våren 2025. Den visar hur man kan använda en webbtjänst för att hantera och presentera arbetserfarenheter.</p>
+  </section>
+  <section>
+    <h2>Hur det fungerar</h2>
+    <p>Webbplatsen använder fetch API för att kommunicera med en Node.js- och Express-baserad backend som är kopplad till en SQL databas. Användaren kan se och lägga till arbetserfarenheter.</p>
+  </section>
+  <section>
+    <h2>Databas</h2>
+    <p>Databasen är en PostgreSQL-databas som körs via Render. Den innehåller tabellen workexperience med följande fält:</p>
+    <ul>
+      <li>id</li>
+      <li>companyname</li>
+      <li>jobtitle</li>
+      <li>location</li>
+      <li>startdate</li>
+      <li>enddate</li>
+      <li>description</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Slutsatser</h2>
+    <p>Genom detta projekt har jag lärt mig hur frontend och backend kan kommunicera via HTTP och hur man hanterar data i en riktig databas med hjälp av ett REST-API.</p>
+  </section>
+</body>
+</html>

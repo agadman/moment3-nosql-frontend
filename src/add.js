@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lägg till arbetserfarenhet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <nav></nav>
+      <h1>Lägg till arbetserfarenhet</h1>
+      <form id="workForm">
+            <label for="companyname">Företagsnamn:</label>
+            <input type="text" id="companyname" name="companyname" />
+            <label for="jobtitle">Jobbtitel:</label>
+            <input type="text" id="jobtitle" name="jobtitle" />
+            <label for="location">Plats:</label>
+            <input type="text" id="location" name="location" />
+            <label for="startdate">Startdatum:</label>
+            <input type="date" id="startdate" name="startdate" />
+            <label for="enddate">Slutdatum:</label>
+            <input type="date" id="enddate" name="enddate" />
+            <label for="description">Beskrivning:</label>
+            <textarea id="description" name="description"></textarea>
+            <button type="submit">Lägg till</button>
+            <p id="message"></p>
+        </form>
+      <p id="message"></p>
+    </div>
+    <script type="module" src="/src/add.js"></script>
+  </body>
+</html>
