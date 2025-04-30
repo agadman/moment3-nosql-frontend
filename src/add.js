@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html lang="sv">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Lägg till arbetserfarenhet</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <div id="app">
-      <nav></nav>
-      <h1>Lägg till arbetserfarenhet</h1>
-      <form id="workForm">
-            <label for="companyname">Företagsnamn:</label>
-            <input type="text" id="companyname" name="companyname" />
-            <label for="jobtitle">Jobbtitel:</label>
-            <input type="text" id="jobtitle" name="jobtitle" />
-            <label for="location">Plats:</label>
-            <input type="text" id="location" name="location" />
-            <label for="startdate">Startdatum:</label>
-            <input type="date" id="startdate" name="startdate" />
-            <label for="enddate">Slutdatum:</label>
-            <input type="date" id="enddate" name="enddate" />
-            <label for="description">Beskrivning:</label>
-            <textarea id="description" name="description"></textarea>
-            <button type="submit">Lägg till</button>
-            <p id="message"></p>
-        </form>
-      <p id="message"></p>
-    </div>
-    <script type="module" src="/src/add.js"></script>
-  </body>
-</html>
+import API_URL from './config';
+
+document.getElementById("workForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    companyname: document.getElementById("companyname").value,
+    jobtitle: document.getElementById("jobtitle").value,
+    location: document.getElementById("location").value,
+    startdate: document.getElementById("startdate").value,
+    enddate: document.getElementById("enddate").value,
+    description: document.getElementById("description").value,
+  };
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorMessage =
+        data.error ||
+        (data.errors ? data.errors.join(" ") : "Något gick fel vid sparandet!");
+      throw new Error(errorMessage);
+    }
+
+    document.getElementById("message").textContent = "Erfarenhet tillagd!";
+    document.getElementById("workForm").reset();
+  } catch (error) {
+    document.getElementById("message").textContent = error.message;
+  }
+});
