@@ -2,6 +2,7 @@ import './style.css';
 import API_URL from './config';
 
 const list = document.getElementById('experienceList');
+const formatDate = isoString => new Date(isoString).toISOString().slice(0, 10);
 
 // Hämtar alla erfarenheter
 fetch(API_URL)
@@ -14,7 +15,7 @@ fetch(API_URL)
       const li = document.createElement('li');
 
       li.innerHTML = `
-        <strong>${exp.jobtitle}</strong> på ${exp.companyname} (${exp.startdate} – ${exp.enddate})<br>
+        <strong>${exp.jobtitle}</strong> på ${exp.companyname} (${exp.startdate?.substring(0, 10)} – ${exp.enddate?.substring(0, 10)})<br>
         <em>${exp.location}</em><br>
         ${exp.description}<br>
         <button class="delete-button" data-id="${exp._id}">Ta bort</button>

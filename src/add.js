@@ -22,15 +22,32 @@ document.getElementById("workForm").addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (!response.ok) {
-      const errorMessage =
-        data.error ||
-        (data.errors ? data.errors.join(" ") : "Något gick fel vid sparandet!");
+      let errorMessage = "Något gick fel vid sparandet!";
+      
+      if (data.errors && typeof data.errors === "object") {
+        const messages = Object.values(data.errors).map(err => err.message);
+        errorMessage = messages.join("\n");
+      } else if (data.error) {
+        errorMessage = data.error;
+      }
+    
       throw new Error(errorMessage);
     }
 
     document.getElementById("message").textContent = "Erfarenhet tillagd!";
     document.getElementById("workForm").reset();
   } catch (error) {
-    document.getElementById("message").textContent = error.message;
+    const messageElement = document.getElementById("message");
+    messageElement.innerHTML = ""; 
+  
+    if (error.message.includes("\n")) {
+      error.message.split("\n").forEach(msg => {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        messageElement.appendChild(p);
+      });
+    } else {
+      messageElement.textContent = error.message;
+    }
   }
 });
